@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Decode GCP service account key
-      run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
-        
-    - name: echo GCP service account key
-      run: cat gcp-key.json
     - name: Checkout code
       uses: actions/checkout@v2
       
@@ -40,12 +35,10 @@ jobs:
       - name: Decode GCP service account key
         run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
         
-      - name: Export GCP service account key
+      - name: Load the content properly formatted in an environment variable
         run: |
           echo "SA_KEY=$(jq -c . < gcp-key.json)" >> $GITHUB_ENV
-
-      - name: test
-        run: echo ${{ env.SA_KEY }}
+          
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
