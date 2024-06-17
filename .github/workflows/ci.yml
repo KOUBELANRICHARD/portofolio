@@ -41,7 +41,9 @@ jobs:
         run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
         
       - name: echo GCP service account key
-        run: cat gcp-key.json
+        run: export SA_KEY=$(cat gcp-key.json)
+      - name: echo GCP service account key
+        run: echo $SA_KEY
 
       - uses: 'google-github-actions/auth@v2'
         with:
