@@ -11,7 +11,7 @@ jobs:
       run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
         
     - name: echo GCP service account key
-      run: cat ${{ secrets.GCP_PROJECT_ID }}
+      run: echo ${{ secrets.GCP_PROJECT_ID }}
     - name: Checkout code
       uses: actions/checkout@v2
       
