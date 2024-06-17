@@ -41,7 +41,8 @@ jobs:
         run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
         
       - name: Export GCP service account key
-        run: echo "(cat ${HOME}/gcp-key.json | jq -c .)" >> $GITHUB_ENV
+        run: |
+          echo "SA_KEY=$(jq -c . < ${HOME}/gcp-key.json)" >> $GITHUB_ENV
 
       - name: test
         run: echo ${{ env.SA_KEY }}
