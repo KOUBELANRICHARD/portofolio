@@ -55,7 +55,7 @@ jobs:
 
       - name: Verify gcloud authentication
         run: |
-          gcloud set config set project ${{ secrets.GCP_PROJECT_ID }}
+          gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud auth list
           gcloud config list
 
