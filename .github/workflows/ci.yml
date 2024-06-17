@@ -32,11 +32,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Decode GCP service account key
+        run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > "${HOME}/gcp-key.json"
+
       # Setup gcloud CLI
       - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          service_account_key: "${HOME}/gcp-key.json"
           export_default_credentials: true
 
        # Get the GKE credentials so we can deploy to the cluster
