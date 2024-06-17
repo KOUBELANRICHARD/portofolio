@@ -56,7 +56,7 @@ jobs:
         with:
           cluster_name: myportofolio-cluster
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          location: us-central1-a
+          location: us-central1
 
 
       - name: Deploy to GKE
