@@ -32,10 +32,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.10.0
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
-          version: '364.0.0'
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
