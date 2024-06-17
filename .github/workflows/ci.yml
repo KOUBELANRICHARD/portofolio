@@ -43,6 +43,9 @@ jobs:
           service_account_key: "${HOME}/gcp-key.json"
           export_default_credentials: true
 
+      - name: Authenticate to Google Cloud
+        run: gcloud auth activate-service-account --key-file="${HOME}/gcp-key.json"
+
       - name: Verify gcloud authentication
         run: |
           gcloud auth list
